@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kid-icarus/icarusbot-reddit.git"
+    "url": "https://github.com/kid-icarus/icarusbot-twitter.git"
   },
   "bugs": {
-    "url": "https://github.com/kid-icarus/icarusbot-reddit/issues"
+    "url": "https://github.com/kid-icarus/icarusbot-twitter/issues"
   },
-  "homepage": "https://github.com/kid-icarus/icarusbot-reddit",
+  "homepage": "https://github.com/kid-icarus/icarusbot-twitter",
   "license": "ISC",
   "dependencies": {
     "node-twitter-api": "^1.2.3"
