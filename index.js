@@ -29,6 +29,13 @@ module.exports = function(bot, config) {
     })
   }
 
+  var deleteTweet = function(id, cb) {
+    tw.statuses('destroy', {id: id}, config.accessToken, config.accessSecret, function(err, data) {
+      if (err) cb(err)
+      cb(null, 'Tweet sucessfully deleted.')
+    })
+  }
+
   bot.on('msg', function(msg) {
     var matches =  msg.msg.match(/^!tw (\w+) ?(\d+)?/)
     if (!matches) {
@@ -38,18 +45,27 @@ module.exports = function(bot, config) {
     var response = ''
     var index = parseInt(matches[2], 10) || 0
 
-    if (matches[1] === 'id') {
-      getTweet(matches[2], function(err, response) {
-        if (err) return
-        bot.msg([msg.chan], msg.sender + ': ' + response)
-      })
-    }
-    else {
-      getTimeline(matches[1], matches[2], function(err, response) {
-        if (err) return
-        bot.msg([msg.chan], msg.sender + ': ' + response)
-      })
-    }
+    switch(matches[1]) {
+      case 'id':
+        getTweet(matches[2], function(err, response) {
+          if (err) return
+          bot.msg([msg.chan], msg.sender + ': ' + response)
+        })
+        break
 
-  })
+      case 'destroy':
+        deleteTweet(matches[2], function(err, response) {
+          if (err) return
+          bot.msg([msg.chan], msg.sender + ': ' + response)
+        })
+        break
+
+        default:
+          getTimeline(matches[1], matches[2], function(err, response) {
+            if (err) return
+            bot.msg([msg.chan], msg.sender + ': ' + response)
+          })
+        break
+      }
+    })
 }
