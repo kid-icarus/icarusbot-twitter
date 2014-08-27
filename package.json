@@ -1,6 +1,6 @@
 {
   "name": "icarusbot-twitter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Twitter plugin for icarus-bot",
   "author": "Ryan Kois",
   "main": "index.js",
